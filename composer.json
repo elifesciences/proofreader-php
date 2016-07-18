@@ -9,6 +9,9 @@
     "require": {
         "phpmd/phpmd": "@stable"
     },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    },
     "autoload": {
         "psr-4": {
             "eLife\\Proofreader\\": "src/"
