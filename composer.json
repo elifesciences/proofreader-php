@@ -7,6 +7,7 @@
             "email": "g.sironi@elifesciences.org"
         }
     ],
+    "bin": ["bin/proofreader-php"],
     "require": {
         "phpmd/phpmd": "@stable",
         "sebastian/phpcpd": "@stable",
