@@ -26,6 +26,26 @@
         </properties>
     </rule>
 
+    <rule name="ForbiddenExceptionSuffix"
+        message = "Do not suffix exception names with {0}"
+        class="eLife\Proofreader\ForbiddenSuffixRule">
+
+        <properties>
+            <property name="forbidden"
+                value="Exception" />
+        </properties>
+    </rule>
+
+    <rule name="ForbiddenAbleSuffix"
+        message = "Do not suffix interface names with -{0}"
+        class="eLife\Proofreader\ForbiddenSuffixRule">
+
+        <properties>
+            <property name="forbidden"
+                value="able" />
+        </properties>
+    </rule>
+
     <rule name="ForbiddenAbstractPrefix"
         message = "Do not prefix class names with {0}"
         class="eLife\Proofreader\ForbiddenPrefixRule">
