@@ -16,5 +16,10 @@
         "psr-4": {
             "eLife\\Proofreader\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "eLife\\Proofreader\\": "test/"
+        }
     }
 }

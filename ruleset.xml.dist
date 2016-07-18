@@ -15,4 +15,14 @@
                 value="DateTimeImmutable" />
         </properties>
     </rule>
+
+    <rule name="ForbiddenInterfaceSuffix"
+        message = "Do not suffix interface names with Interface"
+        class="eLife\Proofreader\ForbiddenSuffixRule">
+
+        <properties>
+            <property name="forbidden"
+                value="Interface" />
+        </properties>
+    </rule>
 </ruleset>
