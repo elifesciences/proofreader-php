@@ -21,10 +21,18 @@ function destroyFinder(Config $configuration)
 	$configuration->finder(new ArrayIterator());
 }
 
-$defaultConfigurationFile = realpath($argv[1]);
-$projectConfigurationFile = realpath($argv[2]);
-$default = include $defaultConfigurationFile;
-$project = include $projectConfigurationFile;
+function includeIfExists($filename)
+{
+    if (!file_exists($filename)) {
+        throw new InvalidArgumentException("$filename does not exist");
+    }
+    return include $filename;
+}
+
+$defaultConfigurationFile = $argv[1];
+$projectConfigurationFile = $argv[2];
+$default = includeIfExists($defaultConfigurationFile);
+$project = includeIfExists($projectConfigurationFile);
 destroyFinder($default);
 destroyFinder($project);
 
