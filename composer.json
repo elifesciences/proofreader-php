@@ -9,7 +9,8 @@
     ],
     "require": {
         "phpmd/phpmd": "@stable",
-        "sebastian/phpcpd": "@stable"
+        "sebastian/phpcpd": "@stable",
+        "fabpot/php-cs-fixer": "@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable"

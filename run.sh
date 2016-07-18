@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 set -e
 # switch to this working directory for simplicity
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+code=$1
 
-$DIR/vendor/bin/phpmd $* text $DIR/ruleset.xml.dist | grep -v "Unexpected token: "
-$DIR/vendor/bin/phpcpd $*
+echo "PHP-CS-Fixer"
+$dir/vendor/bin/php-cs-fixer -vv fix $code --dry-run --config-file $dir/.php_cs.dist
+
+echo "PHPMD"
+$dir/vendor/bin/phpmd $code text $dir/ruleset.xml.dist | grep -v "Unexpected token: "
+
+echo "PHPCPD"
+$dir/vendor/bin/phpcpd $code
+
