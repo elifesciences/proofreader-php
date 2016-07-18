@@ -1,5 +1,6 @@
 {
-    "name": "elifesciences/proofreader-php",
+    "name": "elife/proofreader-php",
+    "license": "MIT",
     "authors": [
         {
             "name": "Giorgio Sironi",
