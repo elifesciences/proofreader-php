@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -e
-# switch to this working directory for simplicity
+
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 code=$1
+
+echo "PHP-CS-Fixer consistency check with local project"
+$dir/bin/php-cs-fixer-consistency-check $dir/.php_cs.dist ./.php_cs
 
 echo "PHP-CS-Fixer"
 $dir/vendor/bin/php-cs-fixer -vv fix $code --dry-run --config-file $dir/.php_cs.dist

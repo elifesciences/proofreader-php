@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+use SebastianBergmann\Diff\Differ;
+use Symfony\CS\Config\Config;
+use Symfony\CS\Finder\DefaultFinder;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+if (count($argv) != 3) {
+    echo "Checks that two PHP-CS-Fixer configurations are consistent", PHP_EOL;
+    echo "Usage: " . __FILE__ . " .php_cs.dist", PHP_EOL;
+    exit(1);
+}
+
+/**
+ * Finders contain project-specific information such as directories
+ * to exclude. These information would make the diff of configurations dirty.
+ */
+function destroyFinder(Config $configuration)
+{
+	$configuration->finder(new ArrayIterator());
+}
+
+$defaultConfigurationFile = realpath($argv[1]);
+$projectConfigurationFile = realpath($argv[2]);
+$default = include $defaultConfigurationFile;
+$project = include $projectConfigurationFile;
+destroyFinder($default);
+destroyFinder($project);
+
+if ($default != $project) {
+    echo "Discrepancy between $defaultConfigurationFile and $projectConfigurationFile: cannot continue", PHP_EOL;
+    $differ = new Differ;
+    echo $differ->diff(var_export($default, true), var_export($project, true)), PHP_EOL;
+	exit(1);
+}
+

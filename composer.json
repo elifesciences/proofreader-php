@@ -10,7 +10,8 @@
     "require": {
         "phpmd/phpmd": "@stable",
         "sebastian/phpcpd": "@stable",
-        "fabpot/php-cs-fixer": "@stable"
+        "fabpot/php-cs-fixer": "@stable",
+        "sebastian/diff": "^1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable"
