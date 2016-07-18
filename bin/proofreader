@@ -7,34 +7,38 @@ then
     exit 1
 fi
 
-dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
-code=$1
-
 function first_that_exists()
 {
     list=$1
     for file in $list
     do
-        if [ -e "${dir}/${file}" ]
+        if [ -e "${file}" ]
         then
-            echo "${dir}/${file}"
+            echo "${file}"
             exit 0
         fi
     done 
     exit 1
 }
-php_cs=$(first_that_exists ".php_cs .php_cs.dist")
-ruleset_xml=$(first_that_exists "ruleset.xml ruleset.xml.dist")
+parent_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+local_checkout_dir=$parent_dir
+composer_installation_dir="${parent_dir}/elife/proofreader-php"
+dir=$(first_that_exists "${local_checkout_dir} ${composer_installation_dir}")
+vendor_bin=$(first_that_exists "${local_checkout_dir}/vendor/bin ./")
+code=$1
+
+php_cs=$(first_that_exists "${dir}/.php_cs ${dir}/.php_cs.dist")
+ruleset_xml=$(first_that_exists "${dir}/ruleset.xml ${dir}/ruleset.xml.dist")
 
 echo "PHP-CS-Fixer consistency check with local project"
 $dir/bin/php-cs-fixer-consistency-check $php_cs .php_cs
 
 echo "PHP-CS-Fixer"
-$dir/vendor/bin/php-cs-fixer -vv fix $code --dry-run --config-file $dir/.php_cs.dist
+$vendor_bin/php-cs-fixer -vv fix $code --dry-run --config-file $dir/.php_cs.dist
 
 echo "PHPMD"
-$dir/vendor/bin/phpmd $code text $ruleset_xml | grep -v "Unexpected token: "
+$vendor_bin/phpmd $code text $ruleset_xml | grep -v "Unexpected token: "
 
 echo "PHPCPD"
-$dir/vendor/bin/phpcpd $code
+$vendor_bin/phpcpd $code
 
