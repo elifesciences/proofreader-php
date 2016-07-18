@@ -17,12 +17,22 @@
     </rule>
 
     <rule name="ForbiddenInterfaceSuffix"
-        message = "Do not suffix interface names with Interface"
+        message = "Do not suffix interface names with {0}"
         class="eLife\Proofreader\ForbiddenSuffixRule">
 
         <properties>
             <property name="forbidden"
                 value="Interface" />
+        </properties>
+    </rule>
+
+    <rule name="ForbiddenAbstractPrefix"
+        message = "Do not prefix class names with {0}"
+        class="eLife\Proofreader\ForbiddenPrefixRule">
+
+        <properties>
+            <property name="forbidden"
+                value="Abstract" />
         </properties>
     </rule>
 </ruleset>

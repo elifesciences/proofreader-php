@@ -1,5 +1,5 @@
 <?php
 
-interface RequestInterface
+class RequestInterface
 {
 }
