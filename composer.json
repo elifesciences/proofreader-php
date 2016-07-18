@@ -1,0 +1,17 @@
+{
+    "name": "elifesciences/proofreader-php",
+    "authors": [
+        {
+            "name": "Giorgio Sironi",
+            "email": "g.sironi@elifesciences.org"
+        }
+    ],
+    "require": {
+        "phpmd/phpmd": "@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "eLife\\Proofreader\\": "src/"
+        }
+    }
+}
