@@ -20,11 +20,12 @@ function first_that_exists()
     done 
     exit 1
 }
+current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 parent_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 local_checkout_dir=$parent_dir
 composer_installation_dir="${parent_dir}/elife/proofreader-php"
 dir=$(first_that_exists "${composer_installation_dir} ${local_checkout_dir}")
-vendor_bin=$(first_that_exists "${local_checkout_dir}/vendor/bin ./")
+vendor_bin=$(first_that_exists "${local_checkout_dir}/vendor/bin ${current_dir}")
 code=$1
 
 php_cs=$(first_that_exists "${dir}/.php_cs ${dir}/.php_cs.dist")
