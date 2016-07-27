@@ -26,7 +26,7 @@ local_checkout_dir=$parent_dir
 composer_installation_dir="${parent_dir}/elife/proofreader-php"
 dir=$(first_that_exists "${composer_installation_dir} ${local_checkout_dir}")
 vendor_bin=$(first_that_exists "${local_checkout_dir}/vendor/bin ${current_dir}")
-code=$1
+code=$*
 
 php_cs=$(first_that_exists "${dir}/.php_cs ${dir}/.php_cs.dist")
 ruleset_xml=$(first_that_exists "${dir}/ruleset.xml ${dir}/ruleset.xml.dist")
@@ -34,12 +34,15 @@ ruleset_xml=$(first_that_exists "${dir}/ruleset.xml ${dir}/ruleset.xml.dist")
 echo "PHP-CS-Fixer consistency check with local project"
 $dir/bin/php-cs-fixer-consistency-check $php_cs .php_cs
 
-echo "PHP-CS-Fixer"
-$vendor_bin/php-cs-fixer -vv fix $code --dry-run --config-file $dir/.php_cs.dist
+for folder in $code; do
+    echo "PHP-CS-Fixer on $folder"
+    $vendor_bin/php-cs-fixer -vv fix $folder --dry-run --config-file $dir/.php_cs.dist
+done
 
 echo "PHPMD"
 set +e
-phpmd_output=$($vendor_bin/phpmd $code text $ruleset_xml)
+comma_separated_folders=$(echo "$code" | sed -e "s/ /,/g")
+phpmd_output=$($vendor_bin/phpmd $comma_separated_folders text $ruleset_xml)
 phpmd_exit=$?
 set -e
 # do not print parsing errors due to PHP syntax not handled yet by PHPMD
