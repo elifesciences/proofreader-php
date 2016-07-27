@@ -1,4 +1,5 @@
 <?php
+
 namespace eLife\Proofreader;
 
 class ForbiddenSuffixRule

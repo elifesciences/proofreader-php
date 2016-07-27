@@ -1,5 +1,7 @@
 <?php
+
 namespace eLife;
+
 //require_once 'PHPMD/AbstractRule.php';
 
 /*
@@ -16,7 +18,6 @@ class MyRule extends \PHPMD\AbstractRule
     }
 }
  */
-
 
 class MyRule extends \PHPMD\AbstractRule
     implements \PHPMD\Rule\MethodAware,
@@ -35,9 +36,9 @@ class MyRule extends \PHPMD\AbstractRule
             var_dump($each->getParent()->getParent()->getParent()->getNode());
             var_dump($each->getParent()->getParent()->getParent()->getType());
              */
-            echo "---", PHP_EOL;
+            echo '---', PHP_EOL;
         }
-        echo "----------", PHP_EOL;
+        echo '----------', PHP_EOL;
         /*
         foreach ($node->findChildrenOfType('ClassReference') as $each) {
             var_dump(get_class($each));

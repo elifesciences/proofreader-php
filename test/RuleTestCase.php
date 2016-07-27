@@ -1,17 +1,19 @@
 <?php
+
 namespace eLife\Proofreader;
 
 use PHPMD\PHPMD;
+use PHPMD\Renderer\XMLRenderer;
 use PHPMD\RuleSetFactory;
 use PHPMD\Writer\StreamWriter;
-use PHPMD\Renderer\XMLRenderer;
 use SimpleXMLElement;
 
 abstract class RuleTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @param string $sample  name, without extension, of one of the files in test/samples/
-     * @return SimpleXMLElement  the captured PHPMD report
+     * @param string $sample name, without extension, of one of the files in test/samples/
+     *
+     * @return SimpleXMLElement the captured PHPMD report
      */
     protected function runPhpmdOn($sample)
     {
@@ -22,7 +24,7 @@ abstract class RuleTestCase extends \PHPUnit_Framework_TestCase
         $renderers = array($renderer);
         $phpmd = new PHPMD();
 
-        $file = __DIR__ . "/samples/{$sample}.php";
+        $file = __DIR__."/samples/{$sample}.php";
         $phpmd->processFiles(
             $file,
             'ruleset.xml.dist',
@@ -32,6 +34,7 @@ abstract class RuleTestCase extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($phpmd->hasViolations(), "phpmd did not detect violations into $file");
         fseek($stream, 0);
+
         return new SimpleXMLElement(stream_get_contents($stream));
     }
 }

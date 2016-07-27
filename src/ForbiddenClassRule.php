@@ -1,4 +1,5 @@
 <?php
+
 namespace eLife\Proofreader;
 
 class ForbiddenClassRule
@@ -11,8 +12,8 @@ class ForbiddenClassRule
         $forbidden = $this->getStringProperty('forbidden');
         $suggested = $this->getStringProperty('suggested');
         foreach ($node->findChildrenOfType('ClassOrInterfaceReference') as $each) {
-            if ($each->getName() == $forbidden 
-                || $each->getName() == '\\' . $forbidden) {
+            if ($each->getName() == $forbidden
+                || $each->getName() == '\\'.$forbidden) {
                 $this->addViolation($each, [$forbidden, $suggested]);
             }
         }
