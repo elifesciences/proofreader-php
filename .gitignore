@@ -1,3 +1,4 @@
 /.php_cs
+/composer.lock
 /ruleset.xml
 /vendor/
