@@ -7,7 +7,7 @@
             "email": "g.sironi@elifesciences.org"
         }
     ],
-    "bin": ["bin/proofreader"],
+    "bin": ["bin/proofreader", "bin/php-cs-fixer-consistency-check"],
     "require": {
         "phpmd/phpmd": "^2.4",
         "sebastian/phpcpd": "^2.0",
