@@ -10,6 +10,7 @@
     "bin": ["bin/proofreader"],
     "require": {
         "phpmd/phpmd": "^2.4",
+        "pdepend/pdepend": "2.2.2",
         "sebastian/phpcpd": "^2.0",
         "friendsofphp/php-cs-fixer": "^1.11",
         "sebastian/diff": "^1.4"
