@@ -35,6 +35,9 @@ echo "PHP-CS-Fixer consistency check with local project"
 $dir/bin/php-cs-fixer-consistency-check $php_cs .php_cs
 
 for folder in $code; do
+    if [[ $folder == --* ]]; then
+        continue
+    fi
     echo "PHP-CS-Fixer on $folder"
     $vendor_bin/php-cs-fixer -vv fix $folder --dry-run --config-file $dir/.php_cs.dist
 done
@@ -51,6 +54,10 @@ done
 #    exit $phpmd_exit
 #fi
 
-echo "PHPCPD"
-$vendor_bin/phpcpd $code
+if [[ "$1" == "--no-phpcpd" ]]; then
+    echo "Skipping PHPCPD, as requested"
+else
+    echo "PHPCPD"
+    $vendor_bin/phpcpd $code
+fi
 
