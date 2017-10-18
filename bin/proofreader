@@ -31,7 +31,7 @@ code=$*
 php_cs=$(first_that_exists "${dir}/.php_cs ${dir}/.php_cs.dist")
 ruleset_xml=$(first_that_exists "${dir}/ruleset.xml ${dir}/ruleset.xml.dist")
 
-echo "PHP-CS-Fixer consistency check with local project"
+echo "PHP-CS-Fixer consistency check with local project: $php_cs vs .php_cs"
 $dir/bin/php-cs-fixer-consistency-check $php_cs .php_cs
 
 for folder in $code; do
@@ -39,7 +39,7 @@ for folder in $code; do
         continue
     fi
     echo "PHP-CS-Fixer on $folder"
-    $vendor_bin/php-cs-fixer -vv fix $folder --dry-run --config-file $dir/.php_cs.dist
+    $vendor_bin/php-cs-fixer -vv fix $folder --dry-run --config-file .php_cs
 done
 
 #echo "PHPMD"
