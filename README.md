@@ -5,7 +5,7 @@ It uses:
 - [PHP Mess Detector](https://phpmd.org) to parse PHP source code and check it conforms to the configured rules. Custom PHPMD rules are provided.
 - [PHP Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd) to check there is no clear duplication between different PHP files.
 
-## Usage
+## Usage (Global installation)
 
 ```
 $ composer install
@@ -13,6 +13,16 @@ $ ./run.sh /path/to/some/src/folder
 ```
 
 The path passed in must be absolute.
+
+## Usage (Docker)
+
+```
+$ ./build-docker.sh
+$ # from your application folder
+$ /path/to/proofreader-php/run-docker.sh my_folder/
+```
+
+The path passed in must be relative and contained in the current directory.
 
 ## Configuration
 
