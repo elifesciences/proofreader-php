@@ -53,19 +53,19 @@ Time: 43 ms, Memory: 4.00MB
 Execute `proofreader` against its test folder (not that useful):
 
 ```
-docker run elifesciences/proofreader-php /srv/proofreader/bin/proofreader test/
+docker run elifesciences/proofreader-php /srv/proofreader-php/bin/proofreader test/
 ```
 
 Execute `proofreader` on the `src` folder of your own project:
 
 ```
-docker run -v $(pwd):/code elifesciences/proofreader-php /srv/proofreader/bin/proofreader /code/src
+docker run -v $(pwd):/code elifesciences/proofreader-php /srv/proofreader-php/bin/proofreader /code/src
 ```
 
 Execute `php-cs-fixer` on the `src` folder of your own project (experimental):
 
 ```
-docker run -v $(pwd):/code -u $(id -u) elifesciences/proofreader-php /srv/proofreader/vendor/bin/php-cs-fixer fix /code/src
+docker run -v $(pwd):/code -u $(id -u) elifesciences/proofreader-php /srv/proofreader-php/vendor/bin/php-cs-fixer fix /code/src
 ```
 
 Import `proofreader` in another project's image:
@@ -74,6 +74,6 @@ Import `proofreader` in another project's image:
 FROM elifesciences/proofreader-php:latest AS proofreader
 ...
 USER elife
-COPY --from=proofreader --chown=elife:elife /srv/proofreader /srv/proofreader
-RUN ln -s /srv/proofreader/bin/proofreader /srv/bin/proofreader
+COPY --from=proofreader --chown=elife:elife /srv/proofreader-php /srv/proofreader-php
+RUN ln -s /srv/proofreader-php/bin/proofreader /srv/bin/proofreader
 ```
