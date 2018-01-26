@@ -48,3 +48,19 @@ phpcpd 2.0.4 by Sebastian Bergmann.
 Time: 43 ms, Memory: 4.00MB
 ```
 
+## Containerization
+
+Execute `proofreader` against its test folder (not that useful):
+```
+docker run elifesciences/proofreader-php /srv/proofreader/bin/proofreader test/
+```
+
+Execute `proofreader` on the `src` folder of your own project:
+```
+docker run -v $(pwd):/code elifesciences/proofreader-php /srv/proofreader/bin/proofreader /code/src
+```
+
+Execute `php-cs-fixer` on the `src` folder of your own project (experimental):
+```
+docker run -v $(pwd):/code -u $(id -u) elifesciences/proofreader-php /srv/proofreader/vendor/bin/php-cs-fixer fix /code/src
+```
