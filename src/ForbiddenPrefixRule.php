@@ -2,9 +2,8 @@
 
 namespace eLife\Proofreader;
 
-class ForbiddenPrefixRule
-    extends \PHPMD\AbstractRule
-    implements \PHPMD\Rule\ClassAware,
+class ForbiddenPrefixRule extends \PHPMD\AbstractRule implements
+\PHPMD\Rule\ClassAware,
     \PHPMD\Rule\InterfaceAware
 {
     public function apply(\PHPMD\AbstractNode $node)
