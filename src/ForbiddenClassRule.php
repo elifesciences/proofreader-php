@@ -2,9 +2,8 @@
 
 namespace eLife\Proofreader;
 
-class ForbiddenClassRule
-    extends \PHPMD\AbstractRule
-    implements \PHPMD\Rule\MethodAware,
+class ForbiddenClassRule extends \PHPMD\AbstractRule implements
+\PHPMD\Rule\MethodAware,
     \PHPMD\Rule\FunctionAware
 {
     public function apply(\PHPMD\AbstractNode $node)

@@ -20,8 +20,14 @@ function first_that_exists()
     done 
     exit 1
 }
-current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-parent_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+current_file="${BASH_SOURCE[0]}"
+if test -L "${current_file}"; then
+    resolved_file=$(readlink "${current_file}")
+else
+    resolved_file="${current_file}"
+fi
+current_dir="$( cd "$( dirname "${resolved_file}" )" && pwd )"
+parent_dir="$( cd "$( dirname "${resolved_file}" )" && cd .. && pwd )"
 local_checkout_dir=$parent_dir
 composer_installation_dir="${parent_dir}/elife/proofreader-php"
 dir=$(first_that_exists "${composer_installation_dir} ${local_checkout_dir}")

@@ -19,9 +19,7 @@ class MyRule extends \PHPMD\AbstractRule
 }
  */
 
-class MyRule extends \PHPMD\AbstractRule
-    implements \PHPMD\Rule\MethodAware,
-    \PHPMD\Rule\FunctionAware
+class MyRule extends \PHPMD\AbstractRule implements \PHPMD\Rule\MethodAware, \PHPMD\Rule\FunctionAware
 {
     public function apply(\PHPMD\AbstractNode $node)
     {
