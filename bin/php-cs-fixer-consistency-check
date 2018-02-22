@@ -42,6 +42,11 @@ $project = includeIfExists($projectConfigurationFile);
 destroyFinder($default);
 destroyFinder($project);
 
+if ($default && $project) {
+    $project->setUsingCache($default->usingCache());
+    $project->hideProgress($default->getHideProgress());
+}
+
 if ($default != $project) {
     echo "Discrepancy between $defaultConfigurationFile and $projectConfigurationFile: cannot continue", PHP_EOL;
     $differ = new Differ;
