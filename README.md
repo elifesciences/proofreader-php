@@ -9,10 +9,9 @@ It uses:
 
 ```
 $ composer install
-$ ./run.sh /path/to/some/src/folder
+# from some project
+# /path/to/proofreader-php/bin/proofreader $folder
 ```
-
-The path passed in must be absolute.
 
 ## Configuration
 
@@ -31,7 +30,7 @@ To override them you can create these files:
 ## Sample output
 
 ```bash
-$ proofreader-php/run.sh src/
+$ ~/code/proofreader-php/bin/proofreader src/
 PHP-CS-Fixer consistency check with local project
 PHP-CS-Fixer
 Loaded config from "/home/giorgio/code/proofreader-php/.php_cs.dist"
