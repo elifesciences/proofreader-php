@@ -60,7 +60,8 @@ docker run -v $(pwd):/code elifesciences/proofreader-php bin/proofreader /code/s
 Execute `php-cs-fixer` on the `src` folder of your own project (experimental):
 
 ```
-docker run -v $(pwd):/code -u $(id -u) elifesciences/proofreader-php vendor/bin/php-cs-fixer fix /code/src
+touch .php_cs.cache
+docker run -v $(pwd):/code -v $(pwd)/.php_cs.cache:/srv/proofreader-php/.php_cs.cache -u $(id -u) elifesciences/proofreader-php vendor/bin/php-cs-fixer fix /code/src
 ```
 
 Import `proofreader` in another project's image:
