@@ -1,2 +1,8 @@
+.git
+.gitignore
 *.md
+Jenkinsfile
+LICENSE
+.php_cs.cache
+README.md
 vendor/
