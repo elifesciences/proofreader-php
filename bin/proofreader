@@ -44,7 +44,7 @@ for folder in $code; do
         continue
     fi
     echo "PHP-CS-Fixer on $folder"
-    $vendor_bin/php-cs-fixer -vv fix $folder --dry-run --config-file .php_cs
+    $vendor_bin/php-cs-fixer -vv fix $folder --dry-run --config .php_cs
 done
 
 if [[ "$1" == "--no-phpcpd" ]]; then

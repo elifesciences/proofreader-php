@@ -10,7 +10,7 @@
     "bin": ["bin/proofreader"],
     "require": {
         "sebastian/phpcpd": "^3.0",
-        "friendsofphp/php-cs-fixer": "^1.11",
+        "friendsofphp/php-cs-fixer": "^2.0",
         "sebastian/diff": "^1.4"
     }
 }
