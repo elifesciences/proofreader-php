@@ -9,22 +9,11 @@
     ],
     "bin": ["bin/proofreader"],
     "require": {
-        "phpmd/phpmd": "^2.5",
         "sebastian/phpcpd": "^2.0",
         "friendsofphp/php-cs-fixer": "^1.11",
         "sebastian/diff": "^1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "eLife\\Proofreader\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "eLife\\Proofreader\\": "test/"
-        }
     }
 }
