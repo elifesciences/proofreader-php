@@ -1,7 +1,6 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude('somedir')
     ->in(__DIR__)
 ;
 
