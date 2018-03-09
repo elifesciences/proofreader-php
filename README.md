@@ -1,4 +1,3 @@
-`proofreader-php` is a tool for enforcing opinionated coding standards and conventions through static analysis of the code.
 
 It uses:
 - [PHP Coding Standard Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to check conformance of PHP code to stylistic coding standards..
@@ -16,13 +15,9 @@ $ composer install
 
 By default, this configuration file is used:
 
-- `.php_cs.dist`
+- `.php_cs`
 
 by PHP CS Fixer.
-
-To override it you can create this file:
-
-- `.php_cs`
 
 ## Sample output
 
@@ -30,7 +25,7 @@ To override it you can create this file:
 $ ~/code/proofreader-php/bin/proofreader src/
 PHP-CS-Fixer consistency check with local project
 PHP-CS-Fixer
-Loaded config from "/home/giorgio/code/proofreader-php/.php_cs.dist"
+Loaded config from "/home/giorgio/code/proofreader-php/.php_cs"
 .........................
 Legend: ?-unknown, I-invalid file syntax, file ignored, .-no changes, F-fixed, E-error
 Checked all files in 1.792 seconds, 6.000 MB memory used

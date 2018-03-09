@@ -13,7 +13,7 @@ if (file_exists(__DIR__ . '/../../../autoload.php')) {
 
 if (count($argv) != 3) {
     echo "Checks that two PHP-CS-Fixer configurations are consistent", PHP_EOL;
-    echo "Usage: " . __FILE__ . " .php_cs.dist", PHP_EOL;
+    echo "Usage: " . __FILE__ . " .php_cs /another/folder/.php_cs", PHP_EOL;
     exit(1);
 }
 
