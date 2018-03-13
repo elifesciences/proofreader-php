@@ -13,7 +13,7 @@ elifeLibrary {
 
     stage 'Smoke tests', {
         // runs proofreader on itself
-        sh "docker run elifesciences/proofreader-php:${commit} bin/proofreader src/ test/"
+        sh "docker run elifesciences/proofreader-php:${commit} bin/proofreader sample/"
     }
 
     elifeMainlineOnly {

@@ -34,8 +34,7 @@ dir=$(first_that_exists "${composer_installation_dir} ${local_checkout_dir}")
 vendor_bin=$(first_that_exists "${local_checkout_dir}/vendor/bin ${current_dir}")
 code=$*
 
-php_cs=$(first_that_exists "${dir}/.php_cs ${dir}/.php_cs.dist")
-ruleset_xml=$(first_that_exists "${dir}/ruleset.xml ${dir}/ruleset.xml.dist")
+php_cs=$(first_that_exists "${dir}/.php_cs")
 
 echo "PHP-CS-Fixer consistency check with local project: $php_cs vs .php_cs"
 $dir/bin/php-cs-fixer-consistency-check $php_cs .php_cs
@@ -45,20 +44,8 @@ for folder in $code; do
         continue
     fi
     echo "PHP-CS-Fixer on $folder"
-    $vendor_bin/php-cs-fixer -vv fix $folder --dry-run --config-file .php_cs
+    $vendor_bin/php-cs-fixer -vv fix $folder --dry-run --config .php_cs
 done
-
-#echo "PHPMD"
-#set +e
-#comma_separated_folders=$(echo "$code" | sed -e "s/ /,/g")
-#phpmd_output=$($vendor_bin/phpmd $comma_separated_folders text $ruleset_xml)
-#phpmd_exit=$?
-#set -e
-## do not print parsing errors due to PHP syntax not handled yet by PHPMD
-#echo "$phpmd_output" | grep -v "Unexpected token: "
-#if [ "$phpmd_exit" -ne "0" ]; then
-#    exit $phpmd_exit
-#fi
 
 if [[ "$1" == "--no-phpcpd" ]]; then
     echo "Skipping PHPCPD, as requested"

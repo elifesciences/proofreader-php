@@ -1,8 +1,7 @@
 #!/usr/bin/env php
 <?php
 use SebastianBergmann\Diff\Differ;
-use Symfony\CS\Config\Config;
-use Symfony\CS\Finder\DefaultFinder;
+use PhpCsFixer\Config;
 
 // in composer?
 // Hack of the century: everyone from PHPUnit to PHP CS Fixer does this
@@ -14,7 +13,7 @@ if (file_exists(__DIR__ . '/../../../autoload.php')) {
 
 if (count($argv) != 3) {
     echo "Checks that two PHP-CS-Fixer configurations are consistent", PHP_EOL;
-    echo "Usage: " . __FILE__ . " .php_cs.dist", PHP_EOL;
+    echo "Usage: " . __FILE__ . " .php_cs /another/folder/.php_cs", PHP_EOL;
     exit(1);
 }
 
@@ -24,7 +23,7 @@ if (count($argv) != 3) {
  */
 function destroyFinder(Config $configuration)
 {
-	$configuration->finder(new ArrayIterator());
+	$configuration->setFinder([]);
 }
 
 function includeIfExists($filename)
@@ -43,8 +42,9 @@ destroyFinder($default);
 destroyFinder($project);
 
 if ($default && $project) {
-    $project->setUsingCache($default->usingCache());
-    $project->hideProgress($default->getHideProgress());
+    $project->setUsingCache($default->getUsingCache());
+    $project->setHideProgress($default->getHideProgress());
+    $project->setCacheFile($default->getCacheFile());
 }
 
 if ($default != $project) {
