@@ -1,19 +1,20 @@
 #!/usr/bin/env php
 <?php
-use SebastianBergmann\Diff\Differ;
+
 use PhpCsFixer\Config;
+use SebastianBergmann\Diff\Differ;
 
 // in composer?
 // Hack of the century: everyone from PHPUnit to PHP CS Fixer does this
-if (file_exists(__DIR__ . '/../../../autoload.php')) {
-    require_once __DIR__ . '/../../../autoload.php';
+if (file_exists(__DIR__.'/../../../autoload.php')) {
+    require_once __DIR__.'/../../../autoload.php';
 } else {
-    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__.'/../vendor/autoload.php';
 }
 
-if (count($argv) != 3) {
-    echo "Checks that two PHP-CS-Fixer configurations are consistent", PHP_EOL;
-    echo "Usage: " . __FILE__ . " .php_cs /another/folder/.php_cs", PHP_EOL;
+if (3 !== count($argv)) {
+    echo 'Checks that two PHP-CS-Fixer configurations are consistent', PHP_EOL;
+    echo 'Usage: '.__FILE__.' .php_cs /another/folder/.php_cs', PHP_EOL;
     exit(1);
 }
 
@@ -23,14 +24,15 @@ if (count($argv) != 3) {
  */
 function destroyFinder(Config $configuration)
 {
-	$configuration->setFinder([]);
+    $configuration->setFinder([]);
 }
 
 function includeIfExists($filename)
 {
     if (!file_exists($filename)) {
-        throw new InvalidArgumentException("$filename does not exist");
+        throw new InvalidArgumentException("${filename} does not exist");
     }
+
     return include $filename;
 }
 
@@ -48,9 +50,8 @@ if ($default && $project) {
 }
 
 if ($default != $project) {
-    echo "Discrepancy between $defaultConfigurationFile and $projectConfigurationFile: cannot continue", PHP_EOL;
-    $differ = new Differ;
+    echo "Discrepancy between ${defaultConfigurationFile} and ${projectConfigurationFile}: cannot continue", PHP_EOL;
+    $differ = new Differ();
     echo $differ->diff(var_export($default, true), var_export($project, true)), PHP_EOL;
-	exit(1);
+    exit(1);
 }
-
