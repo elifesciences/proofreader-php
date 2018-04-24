@@ -5,4 +5,4 @@ ARG composer_dev_arg
 COPY composer.json \
     ./
 
-RUN composer --no-interaction update ${composer_dev_arg} --no-suggest
+RUN composer --no-interaction update ${composer_dev_arg} --no-suggest --classmap-authoritative
