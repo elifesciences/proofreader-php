@@ -1,0 +1,8 @@
+FROM composer:1.6.4
+
+ARG composer_dev_arg
+
+COPY composer.json \
+    ./
+
+RUN composer --no-interaction update ${composer_dev_arg} --ignore-platform-reqs --no-suggest

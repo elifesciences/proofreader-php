@@ -9,8 +9,14 @@
     ],
     "bin": ["bin/proofreader"],
     "require": {
-        "sebastian/phpcpd": "^3.0",
         "friendsofphp/php-cs-fixer": "^2.0",
-        "sebastian/diff": "^1.4"
+        "sebastian/diff": "^1.4",
+        "sebastian/phpcpd": "^3.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.0.29"
+        },
+        "sort-packages": true
     }
 }
