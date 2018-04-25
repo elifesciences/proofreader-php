@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    composer:
+        volumes:
+            - ./composer.json:/app/composer.json
+            - ./composer.lock:/app/composer.lock
+            - vendor:/app/vendor
+    cli:
+        volumes:
+            - ./:/srv/proofreader-php
+            - /srv/proofreader-php/build
+            - vendor:/srv/proofreader-php/vendor
+
+volumes:
+    vendor:

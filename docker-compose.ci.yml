@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    composer:
+        build:
+            args:
+                composer_dev_arg: --no-dev
+    composer-dev:
+        build:
+            context: .
+            dockerfile: Dockerfile.composer
+            args:
+                composer_dev_arg:
+                php_version: ${PHP_VERSION}
+        image: elifesciences/proofreader-php_composer_dev:${IMAGE_TAG}
+        command: /bin/bash
+    ci:
+        build:
+            context: .
+            dockerfile: Dockerfile.ci
+            args:
+                image_tag: ${IMAGE_TAG}
+                php_version: ${PHP_VERSION}
+        image: elifesciences/proofreader-php_ci:${IMAGE_TAG}
+        depends_on:
+            - composer-dev

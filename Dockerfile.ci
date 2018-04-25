@@ -1,0 +1,18 @@
+ARG image_tag=develop
+ARG php_version
+FROM elifesciences/proofreader-php_composer_dev:${image_tag} AS build
+FROM php:${php_version}-cli-alpine
+
+RUN apk add --no-cache bash
+
+WORKDIR /srv/proofreader-php
+RUN touch .php_cs.cache && \
+    chown www-data:www-data .php_cs.cache
+
+COPY .php_cs ./
+COPY sample/ sample/
+COPY bin/ bin/
+COPY --from=build /app/vendor/ vendor/
+
+USER www-data
+CMD ["bin/proofreader", "sample/"]

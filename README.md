@@ -40,12 +40,6 @@ Time: 43 ms, Memory: 4.00MB
 
 ## Containerization
 
-Execute `proofreader` against its sample folder (not that useful):
-
-```
-docker run elifesciences/proofreader-php bin/proofreader sample/
-```
-
 Execute `proofreader` on the `src` folder of your own project:
 
 ```
