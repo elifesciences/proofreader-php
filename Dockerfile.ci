@@ -1,22 +1,17 @@
 ARG image_tag=develop
 FROM elifesciences/proofreader-php_composer_dev:${image_tag} AS build
-FROM elifesciences/php_7.0_cli:656bb4bdf1e49a5e80337e2a7c4f44f10c3f52b0
+FROM php:7.0.29-cli-alpine
 
-ENV PROJECT_FOLDER=/srv/proofreader-php
+RUN apk add --no-cache bash
 
-USER root
-
-WORKDIR ${PROJECT_FOLDER}
+WORKDIR /srv/proofreader-php
 RUN touch .php_cs.cache && \
-    chown elife:elife . && \
     chown www-data:www-data .php_cs.cache
 
-USER elife
-
-COPY --chown=elife:elife .php_cs ./
-COPY --chown=elife:elife bin/ bin/
-COPY --chown=elife:elife sample/ sample/
-COPY --from=build --chown=elife:elife /app/vendor/ vendor/
+COPY .php_cs ./
+COPY sample/ sample/
+COPY bin/ bin/
+COPY --from=build /app/vendor/ vendor/
 
 USER www-data
 CMD ["bin/proofreader", "sample/"]
