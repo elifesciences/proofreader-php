@@ -14,9 +14,6 @@
         "sebastian/phpcpd": "^3.0"
     },
     "config": {
-        "platform": {
-            "php": "7.0.29"
-        },
         "sort-packages": true
     }
 }

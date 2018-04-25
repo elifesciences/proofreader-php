@@ -1,6 +1,7 @@
 ARG image_tag=develop
+ARG php_version
 FROM elifesciences/proofreader-php_composer_dev:${image_tag} AS build
-FROM php:7.0.29-cli-alpine
+FROM php:${php_version}-cli-alpine
 
 RUN apk add --no-cache bash
 

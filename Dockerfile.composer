@@ -1,8 +1,10 @@
 FROM composer:1.6.4
 
 ARG composer_dev_arg
+ARG php_version
 
-COPY composer.json \
-    ./
+RUN composer --no-interaction config --global platform.php ${php_version}
+
+COPY composer.json ./
 
 RUN composer --no-interaction update ${composer_dev_arg} --no-suggest --classmap-authoritative
