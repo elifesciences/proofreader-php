@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+    composer:
+        build:
+            context: .
+            dockerfile: Dockerfile.composer
+        image: elifesciences/proofreader_composer:${IMAGE_TAG}
+        command: /bin/bash
+    cli:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                image_tag: ${IMAGE_TAG}
+                php_version: ${PHP_VERSION}
+        image: elifesciences/proofreader:${IMAGE_TAG}
+        depends_on:
+            - composer
