@@ -8,6 +8,7 @@ RUN apk add --no-cache bash
 WORKDIR /srv/proofreader-php
 
 COPY bin/ bin/
+COPY .php_cs .php_cs
 COPY --from=build /app/vendor/ vendor/
 
 USER www-data
