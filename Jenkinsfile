@@ -21,10 +21,11 @@ elifePipeline {
             stage 'Push image', {
                 image.push()
                 image.tag('latest').push()
-                elifeTagOnly { tag ->
-                    image.tag(tag).push()
-                }
             }
+        }
+
+        elifeTagOnly { tag ->
+            image.tag(tag).push()
         }
     }
 }
