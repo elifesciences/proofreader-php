@@ -17,15 +17,15 @@ elifePipeline {
             sh "docker run elifesciences/proofreader-php_ci:${commit}"
         }
 
-        elifeMainlineOnly {
-            stage 'Push image', {
-                image.push()
-                image.tag('latest').push()
+        stage 'Push image', {
+            elifeMainlineOnly {
+                    image.push()
+                    image.tag('latest').push()
             }
-        }
 
-        elifeTagOnly { tag ->
-            image.tag(tag).push()
+            elifeTagOnly { tag ->
+                image.tag(tag).push()
+            }
         }
     }
 }
